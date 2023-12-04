@@ -64,6 +64,22 @@ const init = async () => {
       }
     },
   });
+  server.route({
+    method: "GET",
+    path: "/batik",
+    handler: async (request, h) => {
+      try {
+        const info = require("./info.json");
+        const data = info;
+
+        const batik = data[2];
+        return batik;
+      } catch (error) {
+        console.error("Error reading JSON file:", error);
+        return h.response("Internal Server Error").code(500);
+      }
+    },
+  });
 
   try {
     await server.start();
