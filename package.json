@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@hapi/hapi": "^21.3.2",
+    "firebase": "^10.7.0",
+    "firebase-admin": "^11.11.1",
+    "nodemon": "^3.0.2"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "name": "auth-api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
