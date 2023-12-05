@@ -1,0 +1,44 @@
+[
+  {
+    "nama": "Batik Celup",
+    "asal": "Indonesia",
+    "pola": "Batik celup merupakan salah satu teknik batik yang populer di Indonesia. Proses pembuatan batik celup melibatkan pencelupan kain ke dalam larutan pewarna dengan menggunakan alat bantu seperti canting atau cap",
+    "makna": "Batik celup sering kali memiliki makna yang terkait dengan kehidupan sehari-hari, budaya, atau mitos lokal. Pola dan warna yang digunakan mencerminkan nilai-nilai dan cerita dari daerah tertentu"
+  },
+  {
+    "nama": "Batik Insang",
+    "asal": "Melayu, Pontianak",
+    "pola": "Batik insang dikenal dengan pola yang menggambarkan corak insang ikan. Motif ini menciptakan kesan dinamis dan artistik pada kain batik",
+    "makna": "Batik insang sering dihubungkan dengan kehidupan laut dan keberlanjutan sumber daya alam. Motifnya bisa mencerminkan kehidupan nelayan atau keindahan alam bawah laut"
+  },
+  {
+    "nama": "Batik Kawung",
+    "asal": "Yogyakarta",
+    "pola": "Motif kawung berbentuk lingkaran yang teratur, melambangkan kesucian dan keseimbangan. Motif ini sering ditemukan pada busana kebesaran kraton",
+    "makna": "Kawung sering dikaitkan dengan simbol kehidupan yang harmonis, persatuan, dan keseimbangan. Motif ini sering dipakai pada acara-acara kerajaan"
+  },
+  {
+    "nama": "Batik Mega Mendung",
+    "asal": "Cirebon, Jawa Barat",
+    "pola": "Batik mega mendung memiliki pola awan mendung yang besar. Motif ini mencerminkan keanggunan dan keelokan alam",
+    "makna": "Mega mendung dipercayai sebagai simbol keberuntungan, kejayaan, dan perlindungan dari bahaya. Motif ini sering diaplikasikan pada busana pernikahan atau acara istimewa"
+  },
+  {
+    "nama": "Batik Parang",
+    "asal": "Yogyakarta",
+    "pola": "Motif parang menggambarkan bentuk senjata tradisional Jawa. Polanya terdiri dari garis-garis diagonal yang teratur",
+    "makna": "Parang sering diartikan sebagai simbol keberanian, kekuatan, dan semangat juang. Motif ini sering digunakan pada busana untuk acara formal atau keagamaan"
+  },
+  {
+    "nama": "Batik Poleng",
+    "asal": "Bali",
+    "pola": "Batik poleng memiliki pola kotak-kotak hitam dan putih yang tersusun secara teratur. Motif ini merupakan simbol dari keberadaan alam semesta dan kehidupan manusia",
+    "makna": "Poleng sering dihubungkan dengan konsep keberagaman dan keseimbangan dalam hidup. Motif ini sering digunakan pada upacara keagamaan di Bali"
+  },
+  {
+    "nama": "Batik Truntum",
+    "asal": "Surakarta, Jawa Tengah",
+    "pola": "Motif truntum memiliki pola yang mirip dengan ikat pinggang yang melingkar. Motif ini sering digunakan pada busana pengantin",
+    "makna": "Truntum melambangkan kesetiaan dan keharmonisan dalam pernikahan. Motif ini sering dianggap sebagai simbol cinta abadi dan keberuntungan bagi pasangan yang menikah"
+  }
+]
