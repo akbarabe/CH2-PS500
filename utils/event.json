@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Pameran Batik Celup",
+    "location": "Bandung",
+    "date": "20/12/2023",
+    "description": "Pameran ini diadakan dalam rangka perayaan ..."
+  },
+  {
+    "name": "Pameran Batik Mega Mendung",
+    "location": "Cirebon",
+    "date": "15/12/2023",
+    "description": "Pameran ini diadakan dalam rangka perayaan ..."
+  },
+  {
+    "name": "Pameran Batik Parang",
+    "location": "Yogyakarta",
+    "date": "24/12/2023",
+    "description": "Pameran ini diadakan dalam rangka perayaan ..."
+  }
+]
