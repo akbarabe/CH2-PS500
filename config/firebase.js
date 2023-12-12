@@ -2,6 +2,7 @@ const admin = require("firebase-admin");
 const serviceAccount = require("./serviceAccountKey.json");
 const { initializeApp } = require("firebase/app");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
+const { Firestore } = require("@google-cloud/firestore");
 
 const firebaseConfig = {
   apiKey: "AIzaSyCPm2oCAHtrOuKOFLkJT8Wy7ta8efqpmNM",
