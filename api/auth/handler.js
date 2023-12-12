@@ -50,8 +50,16 @@ class AuthHandler {
         password
       );
       const user = userCredential.user;
+      const token = user.stsTokenManager;
 
-      return h.response({ message: "User Successfully login" }).code(200);
+      return h
+        .response({
+          message: "success",
+          data: {
+            user,
+          },
+        })
+        .code(200);
     } catch (error) {
       console.error(error);
       return h.response({ message: error.message }).code(400);

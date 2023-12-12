@@ -1,5 +1,6 @@
 const autoBind = require("auto-bind");
 const { db } = require("../../config/firebase");
+const verifyToken = require("../token");
 class ComunityHandler {
   constructor(validator) {
     this._validator = validator;
@@ -8,9 +9,11 @@ class ComunityHandler {
 
   // POST
   async addPostHandler(request, h) {
-    const { title, content, date, userId } = request.payload;
-    this._validator.validatePostingPayload(request.payload);
+    const { title, content, date } = request.payload;
+    const token = request.headers.authorization;
+    const userId = await verifyToken(token);
 
+    this._validator.validatePostingPayload(request.payload);
     const post = await db.collection("postings").add({
       title,
       content,
@@ -74,21 +77,31 @@ class ComunityHandler {
 
   async deletePostByIdHandler(request) {
     const { id } = request.params;
+    const token = request.headers.authorization;
+    const userId = await verifyToken(token);
 
-    await db.collection("postings").doc(id).delete();
-
-    return {
-      status: "success",
-      message: "Postingan berhasil dihapus",
-    };
+    const post = await db.collection("postings").doc(id).get();
+    if (post.exists) {
+      const postData = post.data();
+      if (postData.userId === userId) {
+        await db.collection("postings").doc(id).delete();
+        return { status: "success", message: "Postingan berhasil dihapus" };
+      } else {
+        return {
+          status: "error",
+          message: "Anda tidak memiliki izin untuk menghapus Postingan ini",
+        };
+      }
+    }
   }
 
   // COMMENT
 
   async addCommentHandler(request, h) {
     const { id: postId } = request.params;
-    // const { id: userId } = request.auth.credentials;
-    const { content, date, userId } = request.payload;
+    const token = request.headers.authorization;
+    const userId = await verifyToken(token);
+    const { content, date } = request.payload;
     this._validator.validateCommentPayload(request.payload);
 
     const comment = await db.collection("comments").add({
@@ -125,9 +138,9 @@ class ComunityHandler {
   }
 
   async deleteCommentByIdHandler(request) {
-    // const { id: userId } = request.auth.credentials;
-    const { id, commentId } = request.params;
-    const { userId } = request.payload;
+    const token = request.headers.authorization;
+    const userId = await verifyToken(token);
+    const { commentId } = request.params;
 
     const comment = await db.collection("comments").doc(commentId).get();
 
@@ -151,19 +164,29 @@ class ComunityHandler {
 
   async likePostHandler(request, h) {
     const { id: postId } = request.params;
-    // const { id: userId } = request.auth.credentials;
+    const token = request.headers.authorization;
+    const userId = await verifyToken(token);
 
-    const { userId } = request.payload;
+    const snapshot = await db
+      .collection("postLike")
+      .where("postId", "==", postId)
+      .where("userId", "==", userId)
+      .get();
 
-    await db.collection("postLike").add({
-      postId,
-      userId,
-    });
-    const response = h.response({
-      status: "success",
-    });
-    response.code(201);
-    return response;
+    if (snapshot.empty) {
+      await db.collection("postLike").add({
+        postId,
+        userId,
+      });
+      return {
+        status: "success",
+      };
+    } else {
+      return {
+        status: "error",
+        message: "Anda sudah menyukai postingan ini",
+      };
+    }
   }
 
   async getLikePostHandler(request, h) {
@@ -184,8 +207,8 @@ class ComunityHandler {
 
   async unLikePostHandler(request) {
     const { id } = request.params;
-    const { userId } = request.payload;
-    // const { id: userId } = request.auth.credentials;
+    const token = request.headers.authorization;
+    const userId = await verifyToken(token);
 
     const snapshot = await db
       .collection("postLike")
