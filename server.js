@@ -15,6 +15,9 @@ const article = require("./api/article");
 // plugin event
 const event = require("./api/event");
 
+// plugin model
+const model = require("./api/model");
+
 const init = async () => {
   const server = Hapi.server({
     port: 8080,
@@ -39,6 +42,9 @@ const init = async () => {
     },
     {
       plugin: event,
+    },
+     {
+      plugin: model,
     },
   ]);
 
