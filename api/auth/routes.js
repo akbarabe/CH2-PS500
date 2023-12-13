@@ -9,6 +9,11 @@ const routes = (handler) => [
     path: "/login",
     handler: handler.loginHandler,
   },
+  {
+    method: "POST",
+    path: "/logout",
+    handler: handler.logoutHandler,
+  },
 ];
 
 module.exports = routes;

@@ -1,8 +1,10 @@
-const articles = require("../../utils/article.json");
-
+const { db } = require("../../config/firebase");
+const verifyToken = require("../token");
 class ArticleHandler {
   async getArticleHandler(request) {
     const { keyword } = request.query;
+    const data = await db.collection("articles").get();
+    const articles = data.docs.map((doc) => doc.data());
 
     let filter = articles;
     if (keyword !== undefined) {
@@ -31,7 +33,8 @@ class ArticleHandler {
 
   async getArticleByIdHandler(request) {
     const { id } = request.params;
-    const article = articles[id];
+    const data = await db.collection("articles").doc(id).get();
+    const article = data.data();
     return {
       status: "success",
       data: {

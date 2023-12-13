@@ -1,4 +1,5 @@
 const { admin, getAuth } = require("../config/firebase");
+const AuthenticationError = require("../exception/AuthenticationError");
 
 const verifyToken = async (token) => {
   let tokenId = token.split(" ")[1];
@@ -10,7 +11,7 @@ const verifyToken = async (token) => {
   } catch (error) {
     console.log(error);
 
-    throw new Error(error);
+    throw new AuthenticationError("Anda Harus Login");
   }
 };
 
