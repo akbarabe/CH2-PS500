@@ -57,8 +57,9 @@ class AuthHandler {
       return h
         .response({
           message: "success",
-          data: {
-            user,
+          loginResult: {
+            userId: user.uid,
+            token: token.accessToken,
           },
         })
         .code(200);

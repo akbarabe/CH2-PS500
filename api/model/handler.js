@@ -18,6 +18,7 @@ class ModelHandler {
       // Mendapatkan hasil prediksi dari model
       const { image } = request.payload;
       const predictions = await predict(model, image);
+      console.log(predictions);
       const [Celup, Insang, Kawung, Megamendung, Parang, Poleng, Truntum] =
         predictions;
 

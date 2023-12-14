@@ -2,7 +2,7 @@ const tfjs = require("@tensorflow/tfjs-node");
 
 // Disesuaikan dengan model ML kelompok (di bawah masih contoh)
 function loadModel() {
-  const modelUrl = `<Your TensorFlow.js Model (.json) from Cloud Storage>`;
+  const modelUrl = `model.json`;
   return tfjs.loadLayersModel(modelUrl);
 }
 
@@ -10,7 +10,7 @@ function loadModel() {
 function predict(model, imageBuffer) {
   const tensor = tfjs.node
     .decodeJpeg(imageBuffer)
-    .resizeNearestNeighbor([150, 150])
+    .resizeNearestNeighbor([224, 224])
     .expandDims()
     .toFloat();
 
