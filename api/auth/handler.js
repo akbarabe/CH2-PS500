@@ -3,7 +3,9 @@ const {
   admin,
   getAuth,
   signInWithEmailAndPassword,
+  signOut,
 } = require("../../config/firebase");
+const verifyToken = require("../token");
 
 const autoBind = require("auto-bind");
 
@@ -50,10 +52,38 @@ class AuthHandler {
         password
       );
       const user = userCredential.user;
+      const token = user.stsTokenManager;
 
-      return h.response({ message: "User Successfully login" }).code(200);
+      return h
+        .response({
+          message: "success",
+          loginResult: {
+            userId: user.uid,
+            token: token.accessToken,
+          },
+        })
+        .code(200);
     } catch (error) {
       console.error(error);
+      return h.response({ message: error.message }).code(400);
+    }
+  }
+  async logoutHandler(request, h) {
+    const token = request.headers.authorization;
+    const userId = await verifyToken(token);
+    try {
+      await admin.auth().revokeRefreshTokens(userId);
+      let checkRevoked = false;
+      await admin.auth().verifyIdToken(token, checkRevoked);
+      console.log(
+        `Refresh tokens revoked for user: ${userId} || ${checkRevoked}`
+      );
+      return h
+        .response({
+          message: "success",
+        })
+        .code(200);
+    } catch (error) {
       return h.response({ message: error.message }).code(400);
     }
   }

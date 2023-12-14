@@ -15,10 +15,18 @@ const article = require("./api/article");
 // plugin event
 const event = require("./api/event");
 
+// plugin model
+const model = require("./api/model");
+
 const init = async () => {
   const server = Hapi.server({
     port: 8080,
-    host: "localhost",
+    host: process.env.NODE_ENV !== "production" ? "localhost" : "0.0.0.0",
+    routes: {
+      cors: {
+        origin: ["*"],
+      },
+    },
   });
   // register plugin
   await server.register([
@@ -39,6 +47,9 @@ const init = async () => {
     },
     {
       plugin: event,
+    },
+    {
+      plugin: model,
     },
   ]);
 
